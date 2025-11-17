@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign Up</title>
+  <style>
+    /* Add styles similar to login.html */
+    body { font-family: Arial, sans-serif; margin: 2rem; background-color: #f2f2f2; }
+    form { max-width: 400px; margin: auto; background-color: white; padding: 1rem 2rem; border-radius: 5px; box-shadow: 0 0 10px #aaa; }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    input[type="text"], input[type="password"] { width: 100%; padding: 8px; margin-top: 0.5rem; box-sizing: border-box; }
+    button { margin-top: 1.5rem; padding: 10px; color: white; background-color: #007bff; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 1rem; }
+    .flash { padding: 1rem; margin-bottom: 1rem; border-radius: 5px; }
+    .danger { background-color: #f8d7da; color: #721c24; }
+  </style>
+</head>
+<body>
+  <form action="/signup" method="POST">
+    <h2>Create Account</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required />
+    
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required />
+
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" id="confirm_password" name="confirm_password" required />
+    
+    <button type="submit">Sign Up</button>
+
+    <p style="text-align: center; margin-top: 1rem;">
+      Already have an account? <a href="/login">Login</a>
+    </p>
+  </form>
+</body>
+</html>
